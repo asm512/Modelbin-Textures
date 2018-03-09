@@ -19,6 +19,7 @@ namespace ModelbinTextures
 
         private static void DumpTextureReferences(string path)
         {
+            File.WriteAllText("dump.log", $"                                ===starting dump==={Environment.NewLine}");
             var bytes = File.ReadAllBytes(path);
             string byteSTR = Encoding.Default.GetString(bytes);
             var sb = new StringBuilder();
@@ -39,6 +40,7 @@ namespace ModelbinTextures
             foreach (var item in split)
             {
                 Console.WriteLine($"{item.Replace(":", "game:")} {Environment.NewLine}");
+                File.AppendAllText("dump.log", $"{item.Replace(":", "game:")} {Environment.NewLine} {Environment.NewLine}");
             }
         }
     }
